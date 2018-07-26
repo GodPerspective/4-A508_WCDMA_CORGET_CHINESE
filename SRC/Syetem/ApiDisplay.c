@@ -232,7 +232,7 @@ void DISPLAY_Show(DISPLAY_TYPE id)
     break;
   case d_AllGroupName:
     api_lcd_pwr_on_hint(0,2,"                ");//清屏
-    api_lcd_pwr_on_hint(0,2,GetAllGroupNameForDisplay(GroupCallingNum));//显示当前选中的群组名
+    api_lcd_pwr_on_hint4(GetAllGroupNameForDisplay(GroupCallingNum));//显示当前选中的群组名
     break;
   case d_NoSimCard:
     api_lcd_pwr_on_hint(0,2,(u8 *)dp_no_sim_card);
@@ -242,7 +242,7 @@ void DISPLAY_Show(DISPLAY_TYPE id)
     break;
   case d_AllUserName:
     api_lcd_pwr_on_hint(0,2,"                ");//清屏
-    api_lcd_pwr_on_hint(0,2,GetAllUserNameForDisplay(PersonalCallingNum));//显示当前选中的群组名
+    api_lcd_pwr_on_hint4(GetAllUserNameForDisplay(PersonalCallingNum));//显示当前选中的群组名
     break;
   case d_LoggingIn:
     api_lcd_pwr_on_hint(0,2,(u8 *)dp_account_config);

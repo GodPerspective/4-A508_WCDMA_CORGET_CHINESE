@@ -136,7 +136,7 @@ void Keyboard_Test(void)
         VOICE_SetOutput(ATVOICE_FreePlay,ApiAtCmd_GetUserName(PersonalCallingNum),ApiAtCmd_GetUserNameLen(PersonalCallingNum));//播报按上键之后对应的用户名
 #endif
         api_lcd_pwr_on_hint4("                ");//清屏
-        api_lcd_pwr_on_hint(0,2,GetAllGroupNameForDisplay(PersonalCallingNum));//显示当前选中的群组名
+        api_lcd_pwr_on_hint4(GetAllGroupNameForDisplay(PersonalCallingNum));//显示当前选中的群组名
 
       }
       else if(ApiMenu_GpsInfo_Flag==1||ApiMenu_NativeInfo_Flag==1||ApiMenu_BeiDouOrWritingFrequency_Flag==1)//如果是GPS信息、本机信息、北斗写频切换二级菜单
@@ -740,7 +740,7 @@ void Keyboard_Test(void)
         TASK_PersonalKeyModeSet(FALSE);
         MenuMode_Flag=0;
         api_lcd_pwr_on_hint(0,2,"                ");//清屏
-        api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());//显示当前群组昵称
+        api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());//显示当前群组昵称
         KeyDownUpChoose_GroupOrUser_Flag=0;
         api_disp_icoid_output( eICO_IDMESSAGEOff, TRUE, TRUE);//S选择对应空图标
         KeyUpDownCount=0;

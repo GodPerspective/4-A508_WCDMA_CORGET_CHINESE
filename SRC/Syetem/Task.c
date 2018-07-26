@@ -274,7 +274,7 @@ void Task_RunNormalOperation(void)
     if(ApiPocCmd_GroupStates()==EnterGroup)
     {
       api_lcd_pwr_on_hint(0,2,"                ");
-      api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());
+      api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());
       ApiPocCmd_GroupStatesSet(InGroup);
     }
     else if(ApiPocCmd_GroupStates()==InGroup)
@@ -306,7 +306,7 @@ void Task_RunNormalOperation(void)
     break;
   case ReceivedVoiceStart:
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetSpeakingUserNameForDisplay());
+    api_lcd_pwr_on_hint4(GetSpeakingUserNameForDisplay());
     api_disp_icoid_output( eICO_IDVOX, TRUE, TRUE);//接收信号图标
     api_disp_all_screen_refresh();// 全屏统一刷新
     ApiPocCmd_ReceivedVoicePlayStatesForDisplaySet(ReceivedVoiceBeing);
@@ -990,13 +990,13 @@ void Key3_PlayVoice(void)
   case Key3_OptionZero://播报本机账号、当前群组、电池电量
     //当前用户：
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetLocalUserNameForDisplay());
+    api_lcd_pwr_on_hint4(GetLocalUserNameForDisplay());
     VOICE_SetOutput(ATVOICE_FreePlay,GetLocalUserNameForVoice(),strlen((char const *)GetLocalUserNameForVoice()));//播报本机用户
     DEL_SetTimer(0,100);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}
     //当前群组
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());
+    api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());
     VOICE_SetOutput(ATVOICE_FreePlay,GetNowWorkingGroupNameForVoice(),strlen((char const *)GetNowWorkingGroupNameForVoice()));//播报当前用户手机号
     DEL_SetTimer(0,120);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}
@@ -1006,31 +1006,31 @@ void Key3_PlayVoice(void)
   case Key3_OptionOne://播报本机账号、电池电量
     //当前用户：
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetLocalUserNameForDisplay());
+    api_lcd_pwr_on_hint4(GetLocalUserNameForDisplay());
     VOICE_SetOutput(ATVOICE_FreePlay,GetLocalUserNameForVoice(),strlen((char const *)GetLocalUserNameForVoice()));//播报本机用户
     DEL_SetTimer(0,100);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}
     //当前群组
     api_lcd_pwr_on_hint(0,2,"                ");//显示当前群组昵称
-    api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());
+    api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());
     //电量播报
     KeyBatteryReport();
     break;
   case Key3_OptionTwo://播报本机账号
     //当前用户：
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetLocalUserNameForDisplay());
+    api_lcd_pwr_on_hint4(GetLocalUserNameForDisplay());
     VOICE_SetOutput(ATVOICE_FreePlay,GetLocalUserNameForVoice(),strlen((char const *)GetLocalUserNameForVoice()));//播报本机用户
     DEL_SetTimer(0,100);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}
     //当前群组
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());
+    api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());
     break;
   case Key3_OptionThree://播报当前群组
     //当前群组
     api_lcd_pwr_on_hint(0,2,"                ");
-    api_lcd_pwr_on_hint(0,2,GetNowWorkingGroupNameForDisplay());
+    api_lcd_pwr_on_hint4(GetNowWorkingGroupNameForDisplay());
     VOICE_SetOutput(ATVOICE_FreePlay,GetNowWorkingGroupNameForVoice(),strlen((char const *)GetNowWorkingGroupNameForVoice()));//播报当前用户手机号
     DEL_SetTimer(0,20);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}

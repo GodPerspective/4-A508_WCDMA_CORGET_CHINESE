@@ -150,8 +150,8 @@ void main_app(void)
   }
 }
 
-
 #else
+
 void main_app(void)
 {
   main_init();

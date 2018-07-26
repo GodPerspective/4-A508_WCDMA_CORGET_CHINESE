@@ -62,6 +62,6 @@
 #include "KeyCmd.h"
 
 //Ê¹ÄÜÓ¢ÎÄÓïÒô
-//#define CHINESE
+#define CHINESE
 
 #endif
