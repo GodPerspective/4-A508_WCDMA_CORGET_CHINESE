@@ -4,6 +4,7 @@
 #include<stdlib.h>
 //u8 ReadBufferTest[700];
 u8 Key3_PlayValue=0;
+u8 key_top_value=0;
 u8 Test1=0;
 u8 SendGpsLoginInfoCount=0;
 
@@ -341,7 +342,8 @@ void ApiGpsCmd_PowerOnInitial(void)//bubiao
   adr = CFG_GetCurAdr(ADR_IDGpsFun);//部标注册信息获取
   FILE_Read2(adr.Adr,adr.Len-16,(u8*)(&GpsFunDrvObj.GpsPar));
   FILE_Read(598,1,&Key3_PlayValue);//80位//待修改。20180523 改成FILE_Read
-#if 1//侧键1播报语音类型
+  FILE_Read(602,1,&key_top_value);//顶部键的报警类型
+#if 1//侧键1播报语音类型&顶部键的报警类型
   switch(Key3_PlayValue)
   {
   case 0x00:
@@ -358,6 +360,21 @@ void ApiGpsCmd_PowerOnInitial(void)//bubiao
     break;
   case 0x04:
     Key3Option=Key3_OptionFour;
+    break;
+  default:
+    break;
+  }
+  
+  switch(key_top_value)
+  {
+  case 0x00:
+    key_top_option=REMOTE_AND_LOCAL_ALARM;
+    break;
+  case 0x01:
+    key_top_option=REMOTE_ALARM_ONLY;
+    break;
+  case 0x02:
+    key_top_option=LOCAL_ALARM_ONLY;
     break;
   default:
     break;

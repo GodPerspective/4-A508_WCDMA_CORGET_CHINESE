@@ -34,6 +34,12 @@ typedef enum{
   Key3_OptionFive       =       0x05
 }Key3_OptionType;
 
+typedef enum{
+  REMOTE_AND_LOCAL_ALARM        = 0x00,
+  REMOTE_ALARM_ONLY             = 0x01,
+  LOCAL_ALARM_ONLY              = 0x02,
+}KEY_TOP_TYPE;
+
 #if 1 //WCDMA
 extern void Task_PowerOnInitial(void);
 extern bool task_status_account_config(void);
@@ -42,6 +48,7 @@ extern void TASK_PersonalKeyModeSet(bool a);
 #endif
 TASKAPI bool KEY_4_Flag;
 TASKAPI Key3_OptionType Key3Option;
+TASKAPI KEY_TOP_TYPE key_top_option;
 TASKAPI bool EnterPttMoment_Flag;
 TASKAPI bool NoUseNum;
 TASKAPI u8 NetworkType_2Gor3G_Flag;

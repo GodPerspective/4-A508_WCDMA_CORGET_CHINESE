@@ -1,6 +1,6 @@
 #define TASKABLE
 #include "AllHead.h"
-
+KEY_TOP_TYPE key_top_option;
 
 typedef struct{
   struct{
@@ -263,8 +263,21 @@ void Task_RunNormalOperation(void)
 /*******±¨¾¯¼ü×´Ì¬¼ì²â********************************************************************************************************************************************/
   if(ReadInput_KEY_4==0)//±¨¾¯¼ü
   {
-    ApiPocCmd_WritCommand(PocComm_Alarm,0,0);
-    set_poc_receive_sos_statas(TRUE);
+    switch(key_top_option)
+    {
+    case REMOTE_AND_LOCAL_ALARM:
+      ApiPocCmd_WritCommand(PocComm_Alarm,0,0);
+      set_poc_receive_sos_statas(TRUE);
+      break;
+    case REMOTE_ALARM_ONLY:
+      ApiPocCmd_WritCommand(PocComm_Alarm,0,0);
+      break;
+    case LOCAL_ALARM_ONLY:
+      set_poc_receive_sos_statas(TRUE);
+      break;
+    default:
+      break;
+    }
     DEL_SetTimer(0,100);
     while(1){if(DEL_GetTimer(0) == TRUE) {break;}}
   }

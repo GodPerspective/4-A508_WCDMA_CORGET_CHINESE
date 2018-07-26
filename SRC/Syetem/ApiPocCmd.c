@@ -687,7 +687,7 @@ void ApiPocCmd_10msRenew(void)
         PocCmdDrvobj.States.GroupStats=EnterGroup;
         if(PocCmdDrvobj.States.current_working_status==m_group_mode)
         {
-          PocCmdDrvobj.NameInfo.NowWorkingGroupName.ID=COML_AscToHex(pBuf+4,0x08);;//保存群组ID，从[0]开始存
+          PocCmdDrvobj.NameInfo.NowWorkingGroupName.ID=COML_AscToHex(pBuf+4,0x08);//保存群组ID，从[0]开始存
           if(Len >= 12)//如果群组id后面还有群组名
           {
             PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen= (Len-12);
@@ -731,7 +731,7 @@ void ApiPocCmd_10msRenew(void)
         }
       PocCmdDrvobj.States.receive_sos_statas = TRUE;
       api_lcd_pwr_on_hint(0,2,"                ");
-      api_lcd_pwr_on_hint(0,2,GetReceiveMessagesUserNameForDisplay());
+      api_lcd_pwr_on_hint4(GetReceiveMessagesUserNameForDisplay());
       break;
     case 0x8B://通知音频播放状态
       ucId = COML_AscToHex(pBuf+4, 0x02);
@@ -1256,7 +1256,7 @@ u8 *GetNowWorkingGroupNameForDisplay(void)//当前群组名：显示屏
   
   memset(temp_buf,0,APIPOC_GroupName_Len);
   memset(PocCmdDrvobj.NowWorkingGroupNameBuf,0,sizeof(PocCmdDrvobj.NowWorkingGroupNameBuf));
-  for(i=0;4*i<=PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
   {
     temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.NowWorkingGroupName.Name[4*i+2];
     temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.NowWorkingGroupName.Name[4*i+3];
@@ -1279,7 +1279,7 @@ u8 *GetAllGroupNameForDisplay(u8 a)//所有群组：显示屏
   
   memset(temp_buf,0,APIPOC_GroupName_Len);
   memset(PocCmdDrvobj.AllGroupNameBuf,0,sizeof(PocCmdDrvobj.AllGroupNameBuf));
-  for(i=0;4*i<=PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
   {
     temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.AllGroupName[a].Name[4*i+2];
     temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.AllGroupName[a].Name[4*i+3];
@@ -1297,7 +1297,7 @@ u8 *GetSpeakingUserNameForDisplay(void)//说话的用户：显示屏
   
   memset(temp_buf,0,APIPOC_UserName_Len);
   memset(PocCmdDrvobj.SpeakingUserNameBuf,0,sizeof(PocCmdDrvobj.SpeakingUserNameBuf));
-  for(i=0;4*i<=PocCmdDrvobj.NameInfo.SpeakingUserName.NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.SpeakingUserName.NameLen;i++)
   {
     temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.SpeakingUserName.Name[4*i+2];
     temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.SpeakingUserName.Name[4*i+3];
@@ -1315,7 +1315,7 @@ u8 *GetAllUserNameForDisplay(u8 a)//所有用户：显示屏
   
   memset(temp_buf,0,APIPOC_UserName_Len);
   memset(PocCmdDrvobj.AllUserNameBuf,0,sizeof(PocCmdDrvobj.AllUserNameBuf));
-  for(i=0;4*i<=PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
   {
     temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.AllGroupUserName[a].Name[4*i+2];
     temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.AllGroupUserName[a].Name[4*i+3];
@@ -1334,7 +1334,7 @@ u8 *GetLocalUserNameForDisplay(void)//本机用户：显示屏
   
   memset(temp_buf,0,APIPOC_UserName_Len);
   memset(PocCmdDrvobj.LocalUserNameBuf,0,sizeof(PocCmdDrvobj.LocalUserNameBuf));
-  for(i=0;4*i<=PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
   {
     temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.LocalUserName.Name[4*i+2];
     temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.LocalUserName.Name[4*i+3];
@@ -1349,10 +1349,17 @@ u8 *GetLocalUserNameForDisplay(void)//本机用户：显示屏
 u8 *GetReceiveMessagesUserNameForDisplay(void)//发送短信的用户：显示屏
 {
   u8 i,ReceiveMessagesUserNameBufLen;
+  u8 temp_buf[APIPOC_UserName_Len];
+  
   memset(PocCmdDrvobj.ReceiveMessagesUserNameBuf,0,sizeof(PocCmdDrvobj.ReceiveMessagesUserNameBuf));
-  for(i=0;2*i<=PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.NameLen;i++)
+  for(i=0;4*i<PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.NameLen;i++)
   {
-    PocCmdDrvobj.ReceiveMessagesUserNameBuf[i]=COML_AscToHex(PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.Name+(2*i), 0x02);
+    temp_buf[4*i+0]=PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.Name[4*i+2];
+    temp_buf[4*i+1]=PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.Name[4*i+3];
+    temp_buf[4*i+2]=PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.Name[4*i+0];
+    temp_buf[4*i+3]=PocCmdDrvobj.NameInfo.ReceiveMessagesUserName.Name[4*i+1];
+    PocCmdDrvobj.ReceiveMessagesUserNameBuf[2*i+0]=COML_AscToHex(temp_buf+(4*i), 0x02);
+    PocCmdDrvobj.ReceiveMessagesUserNameBuf[2*i+1]=COML_AscToHex(temp_buf+(4*i)+2, 0x02);
   }
   ReceiveMessagesUserNameBufLen=strlen((char const*)PocCmdDrvobj.ReceiveMessagesUserNameBuf);
   if(PocCmdDrvobj.ReceiveMessagesUserNameBuf[ReceiveMessagesUserNameBufLen]==0
@@ -1369,12 +1376,12 @@ u8 *GetNowWorkingGroupNameForVoice(void)//当前群组：播报
 {
   u8 i;
 #if 1
-  for(i=0;i<=PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
+  for(i=0;i<PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
   {
     PocCmdDrvobj.NowWorkingGroupNameForVoiceBuf[i]    = PocCmdDrvobj.NameInfo.NowWorkingGroupName.Name[i];
   }
 #else
-  for(i=0;2*i<=PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
+  for(i=0;2*i<PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
   {
     PocCmdDrvobj.NowWorkingGroupNameForVoiceBuf[4*i]    = PocCmdDrvobj.NameInfo.NowWorkingGroupName.Name[2*i];
     PocCmdDrvobj.NowWorkingGroupNameForVoiceBuf[4*i+1]  = PocCmdDrvobj.NameInfo.NowWorkingGroupName.Name[2*i+1];
@@ -1389,12 +1396,12 @@ u8 *GetAllGroupNameForVoice(u8 a)//所有群组：播报
 {
   u8 i;
 #if 1
-  for(i=0;i<=PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
+  for(i=0;i<PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
   {
     PocCmdDrvobj.AllGroupNameForVoiceBuf[i]    = PocCmdDrvobj.NameInfo.AllGroupName[a].Name[i];
   }
 #else
-  for(i=0;2*i<=PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
+  for(i=0;2*i<PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
   {
     PocCmdDrvobj.AllGroupNameForVoiceBuf[4*i]    = PocCmdDrvobj.NameInfo.AllGroupName[a].Name[2*i];
     PocCmdDrvobj.AllGroupNameForVoiceBuf[4*i+1]  = PocCmdDrvobj.NameInfo.AllGroupName[a].Name[2*i+1];
@@ -1409,12 +1416,12 @@ u8 *GetAllUserNameForVoice(u8 a)//所有用户：播报
 {
   u8 i;
 #if 1
-  for(i=0;i<=PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
+  for(i=0;i<PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
   {
     PocCmdDrvobj.AllUserNameForVoiceBuf[i]    = PocCmdDrvobj.NameInfo.AllGroupUserName[a].Name[i];
   }
 #else
-  for(i=0;2*i<=PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
+  for(i=0;2*i<PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
   {
     PocCmdDrvobj.AllUserNameForVoiceBuf[4*i]    = PocCmdDrvobj.NameInfo.AllGroupUserName[a].Name[2*i];
     PocCmdDrvobj.AllUserNameForVoiceBuf[4*i+1]  = PocCmdDrvobj.NameInfo.AllGroupUserName[a].Name[2*i+1];
@@ -1429,12 +1436,12 @@ u8 *GetLocalUserNameForVoice(void)//本机用户：播报
 {
   u8 i;
 #if 1
-  for(i=0;i<=PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
+  for(i=0;i<PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
   {
     PocCmdDrvobj.LocalUserNameForVoiceBuf[i]    = PocCmdDrvobj.NameInfo.LocalUserName.Name[i];
   }
 #else
-  for(i=0;2*i<=PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
+  for(i=0;2*i<PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
   {
     PocCmdDrvobj.LocalUserNameForVoiceBuf[4*i]    = PocCmdDrvobj.NameInfo.LocalUserName.Name[2*i];
     PocCmdDrvobj.LocalUserNameForVoiceBuf[4*i+1]  = PocCmdDrvobj.NameInfo.LocalUserName.Name[2*i+1];
