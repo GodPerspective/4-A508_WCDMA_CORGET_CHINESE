@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=-894582038
+Checksum=1468317418
 [CodeCoverage]
 Enabled=_ 0
 [CallStack]
@@ -222,8 +222,7 @@ LogFile=_ ""
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\SRC\Syetem\uart3.c}.637.4" 0 0 0 0 "" 0 ""
 Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\MAIN\stm8s_it.c}.299.2" 1 0 0 0 "" 0 ""
 Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\MAIN\stm8s_it.c}.299.2" 1 0 0 0 "" 0 ""
-Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\SRC\Syetem\ApiPocCmd.c}.1381.5" 1 0 0 0 "" 0 ""
-Count=4
+Count=3
 [Aliases]
 A0=_ "C:\Users\lei\Desktop\IAR\GT20L16P1Y.c" ""
 Count=1
