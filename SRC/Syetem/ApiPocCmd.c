@@ -1375,6 +1375,7 @@ u8 *GetReceiveMessagesUserNameForDisplay(void)//发送短信的用户：显示屏
 u8 *GetNowWorkingGroupNameForVoice(void)//当前群组：播报
 {
   u8 i;
+    memset(PocCmdDrvobj.NowWorkingGroupNameForVoiceBuf,0,APIPOC_GroupName_Len);
 #if 1
   for(i=0;i<PocCmdDrvobj.NameInfo.NowWorkingGroupName.NameLen;i++)
   {
@@ -1395,6 +1396,7 @@ u8 *GetNowWorkingGroupNameForVoice(void)//当前群组：播报
 u8 *GetAllGroupNameForVoice(u8 a)//所有群组：播报
 {
   u8 i;
+  memset(PocCmdDrvobj.AllGroupNameForVoiceBuf,0,APIPOC_GroupName_Len);
 #if 1
   for(i=0;i<PocCmdDrvobj.NameInfo.AllGroupName[a].NameLen;i++)
   {
@@ -1415,6 +1417,7 @@ u8 *GetAllGroupNameForVoice(u8 a)//所有群组：播报
 u8 *GetAllUserNameForVoice(u8 a)//所有用户：播报
 {
   u8 i;
+  memset(PocCmdDrvobj.AllUserNameForVoiceBuf,0,APIPOC_UserName_Len);
 #if 1
   for(i=0;i<PocCmdDrvobj.NameInfo.AllGroupUserName[a].NameLen;i++)
   {
@@ -1435,6 +1438,7 @@ u8 *GetAllUserNameForVoice(u8 a)//所有用户：播报
 u8 *GetLocalUserNameForVoice(void)//本机用户：播报
 {
   u8 i;
+  memset(PocCmdDrvobj.LocalUserNameForVoiceBuf,0,APIPOC_UserName_Len);
 #if 1
   for(i=0;i<PocCmdDrvobj.NameInfo.LocalUserName.NameLen;i++)
   {
