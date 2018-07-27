@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V2.20.1.176 for STM8                     26/Jul/2018  18:10:09
+# IAR ELF Linker V2.20.1.176 for STM8                     27/Jul/2018  11:32:30
 # Copyright 2010-2015 IAR Systems AB.
 #
 #    Output file  =  
@@ -408,7 +408,7 @@ __rt_version               = 4
   .near.rodata       const    0x00a9db     0x3  uart3.o [1]
                             - 0x00a9de  0x295e
 
-"P4", part 1 of 2:                      0x45b7
+"P4", part 1 of 2:                      0x45bb
   .far_func.text     ro code  0x00a9de   0x9d0  ApiKeyboard.o [1]
   .far_func.text     ro code  0x00b3ae   0x823  DrvGD83.o [1]
   .far_func.text     ro code  0x00bbd1   0x5ae  ApiPocCmd.o [1]
@@ -425,8 +425,8 @@ __rt_version               = 4
   .far_func.text     ro code  0x00e65c   0x252  DrvHTG12832.o [1]
   .far_func.text     ro code  0x00e8ae   0x251  GT20L16P1Y.o [3]
   .far_func.text     ro code  0x00eaff   0x24d  ApiGpsCmd.o [1]
-  .far_func.text     ro code  0x00ed4c   0x249  Voice.o [1]
-                            - 0x00ef95  0x45b7
+  .far_func.text     ro code  0x00ed4c   0x24d  Voice.o [1]
+                            - 0x00ef99  0x45bb
 
 "P4", part 2 of 2:                      0x6340
   .far_func.text     ro code  0x010000   0x22c  Config.o [1]
@@ -782,7 +782,7 @@ E:\1-source\4-A508_WCDMA_CORGET_CHINESE\PRJ\Debug\Obj: [1]
     System.o                   357                20
     Task.o                   1 768      110       19
     Tone.o                     406                21
-    Voice.o                    795      418       42
+    Voice.o                    799      418       42
     main.o                      39
     stm8s_adc2.o               379
     stm8s_clk.o                269        4
@@ -797,7 +797,7 @@ E:\1-source\4-A508_WCDMA_CORGET_CHINESE\PRJ\Debug\Obj: [1]
     sysclock.o                 128
     uart3.o                  2 343       30      122
     ------------------------------------------------
-    Total:                  39 557   10 508    5 061
+    Total:                  39 561   10 508    5 061
 
 command line: [2]
     ------------------------------------------------
@@ -842,7 +842,7 @@ dlstm8mmn.a: [5]
 
     Linker created                       20      256
 ----------------------------------------------------
-    Grand Total:            43 255   10 718    5 333
+    Grand Total:            43 259   10 718    5 333
 
 
 *******************************************************************************
@@ -1416,7 +1416,7 @@ UnicodeGetPointArrayData32
                         0x015422    0x48  Code  Gb  GT20L16P1Y_D.o [1]
 UnicodeValueSearch      0x015c12    0x26  Code  Gb  GT20L16P1Y_D.o [1]
 VOICE_1sProcess         0x0160c3     0xf  Code  Gb  Voice.o [1]
-VOICE_Play              0x00ed4c   0x249  Code  Gb  Voice.o [1]
+VOICE_Play              0x00ed4c   0x24d  Code  Gb  Voice.o [1]
 VOICE_Renew             0x014609    0x71  Code  Gb  Voice.o [1]
 VOICE_SetOutput         0x015044    0x52  Code  Gb  Voice.o [1]
 ValueSearch             0x014d35    0x5c  Code  Gb  GT20L16P1Y_D.o [1]
@@ -1627,7 +1627,7 @@ ucUserListInfo          0x000069     0x2  Data  Gb  ApiPocCmd.o [1]
 [4] = dbgstm8mmd.a
 [5] = dlstm8mmn.a
 
-  43 255 bytes of readonly  code memory
+  43 259 bytes of readonly  code memory
   10 718 bytes of readonly  data memory
    5 333 bytes of readwrite data memory
 

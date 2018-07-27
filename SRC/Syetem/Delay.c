@@ -377,7 +377,7 @@ static void DEL_500msProcess(void)			//delay 500ms process server
     if(poc_gps_value_for_display_flag()==TRUE)
     {
       DelDrvObj.Count.poc_gps_value_for_display_flag_count++;
-      if(DelDrvObj.Count.poc_gps_value_for_display_flag_count>2*6)
+      if(DelDrvObj.Count.poc_gps_value_for_display_flag_count>2*8)
       {
         DelDrvObj.Count.poc_gps_value_for_display_flag_count=0;
         DelDrvObj.poc_gps_value_for_display_flag2=TRUE;

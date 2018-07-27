@@ -135,6 +135,7 @@ void VOICE_Play(VOICEPLAY_TYPE id)
     break;
   case LowBattery:
     VOICE_SetOutput(ATVOICE_FreePlay,(u8*)ucLowBattery,strlen((char const*)ucLowBattery));//µÁ¡øµÕ«Î≥‰µÁ
+    break;
   case LoggingIn:
     VOICE_SetOutput(ATVOICE_FreePlay,(u8*)ucLoggingIn,strlen((char const*)ucLoggingIn));//Account Config
     break;
