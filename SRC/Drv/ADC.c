@@ -44,10 +44,10 @@ void LowVoltageDetection(void)
   
  if(GetTaskId()==Task_Start)
  {
-   if(ADValue<=355&&ADValue>=200)
+   if(ADValue<=345&&ADValue>=200)
    {
      Count3++;
-     if(Count3>100)
+     if(Count3>200)
      {
        LobatteryTask_StartFlag=TRUE;
      } 
@@ -99,8 +99,9 @@ void LowVoltageDetection(void)
  {
     if(ADValue<=345&&ADValue>=200)//345Îª3.42²¥±¨
     {
+      Count2=0;
       Count++;
-      if(Count>=100)
+      if(Count>=200)
       {
         if(MenuMode_Flag==0)
         api_disp_icoid_output( eICO_IDBATT, TRUE, TRUE);
@@ -111,19 +112,21 @@ void LowVoltageDetection(void)
     }
     else if(ADValue<355&&ADValue>345)
     {
+      Count=0;
       Count2++;
-      if(Count2>=100)
+      if(Count2>=200)
       {
         if(MenuMode_Flag==0)
         api_disp_icoid_output( eICO_IDBATT, TRUE, TRUE);
         SetTaskId(Task_NormalOperation);
         PrimaryLowPower_Flag=TRUE;
         Count2=0;
-        
       }
     }
     else
     {
+      Count=0;
+      Count2=0;
       SetTaskId(Task_NormalOperation); 
       if(ADValue<=350&&ADValue>=200)
       {

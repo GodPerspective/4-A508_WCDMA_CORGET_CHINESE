@@ -353,7 +353,20 @@ void api_lcd_pwr_on_hint4(u8 *CharData)//UNICODE显示
 	//MCU_LCD_BACKLIGTH(OFF);
 	api_disp_all_screen_refresh();// 全屏统一刷新
 }
+void api_lcd_pwr_on_hint5(u8 *CharData)//UNICODE显示
+{
+	DISP_CHAR stCharInfo;
+	stCharInfo.DispType  = DISP_IDCNASC816;
+	//stCharInfo.DispAddX  = 0;
+	stCharInfo.DispAddY  = 0x00;//左上角显示汉字
+	stCharInfo.DispAddX  = 0;//一行16个英文字符
+        stCharInfo.DispLenth = LCD_DISP_LEN_MAX;
+        
+	api_disp_char_output2(stCharInfo,CharData);//UNICODE显示，群组信息显示屏显示使用
 
+	//MCU_LCD_BACKLIGTH(OFF);
+	api_disp_all_screen_refresh();// 全屏统一刷新
+}
 /*******************************************************************************
 * Description	: 刷新屏幕数据显示
 * Input		: void
